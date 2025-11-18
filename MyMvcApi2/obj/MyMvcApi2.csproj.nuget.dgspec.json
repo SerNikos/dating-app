@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Christian Culbida\\MyMvcApi2\\MyMvcApi2.csproj": {}
+    "C:\\Users\\Christian Culbida\\Documents\\GitHub\\MyMvcApi2\\MyMvcApi2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Christian Culbida\\MyMvcApi2\\MyMvcApi2.csproj": {
+    "C:\\Users\\Christian Culbida\\Documents\\GitHub\\MyMvcApi2\\MyMvcApi2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Christian Culbida\\MyMvcApi2\\MyMvcApi2.csproj",
+        "projectUniqueName": "C:\\Users\\Christian Culbida\\Documents\\GitHub\\MyMvcApi2\\MyMvcApi2.csproj",
         "projectName": "MyMvcApi2",
-        "projectPath": "C:\\Users\\Christian Culbida\\MyMvcApi2\\MyMvcApi2.csproj",
+        "projectPath": "C:\\Users\\Christian Culbida\\Documents\\GitHub\\MyMvcApi2\\MyMvcApi2.csproj",
         "packagesPath": "C:\\Users\\Christian Culbida\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Christian Culbida\\MyMvcApi2\\obj\\",
+        "outputPath": "C:\\Users\\Christian Culbida\\Documents\\GitHub\\MyMvcApi2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Christian Culbida\\AppData\\Roaming\\NuGet\\NuGet.Config"

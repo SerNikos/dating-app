@@ -62,7 +62,7 @@ function App() {
 
 const handlePost = () => {
   axios
-    .post("http://localhost:5033/", {
+    .post("http://localhost:5033/api/user/register", {
       username: formValues.username,
       email: formValues.email,
       password: formValues.password,
