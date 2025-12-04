@@ -1,134 +1,143 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./SignUp.css";
 import axios from "axios";
 
-function App() {
-  const initialValues = { username: "", email: "", password: "" };
+export default function SignUp() {
+  const [inputValues, setInputValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  //stores the user’s input.
-  const [formValues, setFormValues] = useState(initialValues);
-  //stores any validation error messages.
-  const [formErrors, setFormErrors] = useState({});
-  //tracks if the user has submitted the form.
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [didEdit, setDidEdit] = useState({
+    username: false,
+    email: false,
+    password: false,
+  });
 
-  const handleChange = (event) => {
-    // Get the input field that triggered the change
-    const inputField = event.target;
+  // ---------- VALIDATION ----------
+  const usernameIsInvalid =
+    didEdit.username && inputValues.username.length < 3;
 
-    // 2 Extract the field name (e.g. "email") and the value the user typed
-    const fieldName = inputField.name;
-    const fieldValue = inputField.value;
+  const emailIsInvalid =
+    didEdit.email &&
+    !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(inputValues.email);
 
-    //3 Update the formValues state:
-    // - Copy all existing fields (...formValues)
-    // - Overwrite the one that changed ([fieldName]: fieldValue)
-    setFormValues({ ...formValues, [fieldName]: fieldValue });
+  const passwordIsInvalid =
+    didEdit.password && inputValues.password.length < 4;
+
+  // ---------- INPUT HANDLERS ----------
+  function handleInputChange(identifier, value) {
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      [identifier]: value,
+    }));
+
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: false,
+    }));
+  }
+
+  function handleInputBlur(identifier) {
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: true,
+    }));
+  }
+
+  // ---------- SUBMIT ----------
+  const handlePost = (event) => {
+    event.preventDefault();
+
+    if (usernameIsInvalid || emailIsInvalid || passwordIsInvalid) {
+      return;
+    }
+
+    axios
+      .post("http://localhost:5033/api/user/register", {
+        username: inputValues.username,
+        email: inputValues.email,
+        password: inputValues.password,
+      })
+      .then((res) => {
+        console.log(res.data.username);
+        console.log(res.data.email);
+        console.log(res.data.password);
+      })
+      .catch((err) => {
+        console.error("Error posting data:", err);
+      });
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
-
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
-      errors.username = "Username is required!";
-    }
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 characters";
-    } else if (values.password.length > 15) {
-      errors.password = "Password cannot exceed more than 15 characters";
-    }
-    return errors;
-  };
-
-const handlePost = () => {
-  axios
-    .post("http://localhost:5033/api/user/register", {
-      username: formValues.username,
-      email: formValues.email,
-      password: formValues.password,
-    })
-    .then((res) => {
-      console.log(res.username);
-      console.log(res.email);
-      console.log(res.password);
-    })
-    .catch((err) => {
-      console.error("Error posting data:", err);
-    });
-};
 
   return (
     <div className="signup-container">
-      {Object.keys(formErrors).length === 0 && isSubmit ? (
-        <div className="ui message success">Signed in successfully</div>
-      ) : null}
-
-      <div className="title">SOME APP</div>
-
-      <form onSubmit={handleSubmit}>
-        <h1>SignUp Form</h1>
+      <form>
+        <h1>Sign Up</h1>
         <div className="ui divider"></div>
-        <div className="ui form">
-          <div className="field">
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formValues.username}
-              onChange={handleChange}
-            />
+
+        {/* USERNAME */}
+        <div className="field">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            value={inputValues.username}
+            onChange={(e) =>
+              handleInputChange("username", e.target.value)
+            }
+            onBlur={() => handleInputBlur("username")}
+          />
+          <div className="invalid-error">
+            {usernameIsInvalid && (
+              <p>Username must be at least 3 characters</p>
+            )}
           </div>
-          <p>{formErrors.username}</p>
-          <div className="field">
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              value={formValues.email}
-              onChange={handleChange}
-            />
-          </div>
-          <p>{formErrors.email}</p>
-          <div className="field">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-          </div>
-          <p>{formErrors.password}</p>
-          <button className="submit-button" onClick={handlePost}>
-            Submit
-          </button>
         </div>
+
+        {/* EMAIL */}
+        <div className="field">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            placeholder="Email"
+            value={inputValues.email}
+            onChange={(e) =>
+              handleInputChange("email", e.target.value)
+            }
+            onBlur={() => handleInputBlur("email")}
+          />
+          <div className="invalid-error">
+            {emailIsInvalid && <p>Please enter a valid email.</p>}
+          </div>
+        </div>
+
+        {/* PASSWORD */}
+        <div className="field">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={inputValues.password}
+            onChange={(e) =>
+              handleInputChange("password", e.target.value)
+            }
+            onBlur={() => handleInputBlur("password")}
+          />
+          <div className="invalid-error">
+            {passwordIsInvalid && (
+              <p>Password must be at least 4 characters</p>
+            )}
+          </div>
+        </div>
+
+        <button className="submit-button" onClick={handlePost}>
+          Submit
+        </button>
       </form>
     </div>
   );
 }
-
-export default App;

@@ -9,10 +9,29 @@ export default function LogIn() {
     password: "",
   });
 
+  const [didEdit, setDidEdit] = useState({
+    username: false,
+    password: false,
+  });
+
+  const usernameIsInvalid =
+    didEdit.username && !(loginInputValues.username.length > 2);
+
   function handleInputChange(identifier, value) {
     setLoginInputValues((prevValues) => ({
       ...prevValues,
       [identifier]: value,
+    }));
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: false,
+    }));
+  }
+
+  function handleInputBlur(identifier) {
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: true,
     }));
   }
 
@@ -45,10 +64,16 @@ export default function LogIn() {
             placeholder="Enter your username"
             id="username"
             value={loginInputValues.username}
+            onBlur={() => handleInputBlur("username")}
             onChange={(event) =>
               handleInputChange("username", event.target.value)
             }
           />
+          <div className="invalid-error">
+            {usernameIsInvalid && (
+              <p>Please enter a username longer than 2 characters</p>
+            )}
+          </div>
         </div>
 
         <div className="field">
@@ -58,6 +83,7 @@ export default function LogIn() {
             placeholder="Enter your password"
             id="password"
             value={loginInputValues.password}
+            onBlur={() => handleInputBlur("password")}
             onChange={(event) =>
               handleInputChange("password", event.target.value)
             }

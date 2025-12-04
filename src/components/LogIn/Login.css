@@ -69,3 +69,8 @@ input:focus {
   text-align: center;
   margin: 5rem;
 }
+
+.invalid-error{
+    color: red;
+    margin-top: 0.5rem;
+}
