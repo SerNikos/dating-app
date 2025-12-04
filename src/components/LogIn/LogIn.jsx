@@ -35,21 +35,25 @@ export default function LogIn() {
     }));
   }
 
-  const handlePost = (event) => {
-    event.preventDefault();
-    axios
-      .post("http://localhost:5033/api/user/register", {
-        username: loginInputValues.username,
-        password: loginInputValues.password,
-      })
-      .then((res) => {
-        console.log(res.username);
-        console.log(res.password);
-      })
-      .catch((err) => {
-        console.error("Error posting data:", err);
-      });
-  };
+const handlePost = (event) => {
+  event.preventDefault();
+
+  axios
+    .post("http://localhost:5033/api/user/register", {
+      username: loginInputValues.username,
+      password: loginInputValues.password,
+    })
+    .then((res) => {
+      console.log(res.data.username);
+      console.log(res.data.password);
+      alert(`You are now Logged In, ${res.data.username}`);
+    })
+    .catch((err) => {
+      console.error("Error posting data:", err);
+      alert("Login failed — check your username or password.");
+    });
+};
+
 
   return (
     <div className="login-container">
