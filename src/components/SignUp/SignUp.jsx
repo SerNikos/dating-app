@@ -64,7 +64,7 @@ export default function SignUp() {
         console.log(res.data.username);
         console.log(res.data.email);
         console.log(res.data.password);
-        alert(`You are now Signed Up ${res.username}`);
+        alert(`You are now Signed Up ${res.data.username}`);
       })
       .catch((err) => {
         console.error("Error posting data:", err);
