@@ -39,7 +39,7 @@ const handlePost = (event) => {
   event.preventDefault();
 
   axios
-    .post("http://localhost:5033/api/user/register", {
+    .post("http://localhost:5033/api/user/login", {
       username: loginInputValues.username,
       password: loginInputValues.password,
     })
