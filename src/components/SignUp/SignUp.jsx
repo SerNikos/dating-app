@@ -140,7 +140,7 @@ export default function SignUp() {
           Submit
         </button>
 
-        You wanna Log In?{" "}
+        You wanna Log In?
         <Link to="/LogIn">
           Click here!
         </Link>
