@@ -19,7 +19,7 @@ export default function Feed() {
         <h1 className="title-tsipoura">🐟 H Monaxiki Tsipoura Feed 🐟</h1>
 
         <div>
-          <h2>Be less lonely by talk to tsipoura 🐟</h2>
+          <h2>Be less lonely, talk to tsipoura... 🐟</h2>
           <PostTsipoura onPost={addPost} />
         </div>
 
