@@ -50,7 +50,7 @@ export default function LogIn() {
         alert(`You are now Logged In, ${res.data.username}`);
 
         //Redirect to feed
-        navigate("/feed");
+        navigate("/Feed");
       })
       .catch((err) => {
         console.error("Login error:", err);
