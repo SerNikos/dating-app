@@ -4529,11 +4529,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ReactProjects\\dating-app\\MyMvcApi2\\MyMvcApi2.csproj",
+      "projectUniqueName": "D:\\ReactProjects\\lonely-fish-forum\\MyMvcApi2\\MyMvcApi2.csproj",
       "projectName": "MyMvcApi2",
-      "projectPath": "D:\\ReactProjects\\dating-app\\MyMvcApi2\\MyMvcApi2.csproj",
+      "projectPath": "D:\\ReactProjects\\lonely-fish-forum\\MyMvcApi2\\MyMvcApi2.csproj",
       "packagesPath": "C:\\Users\\Ser Nikos\\.nuget\\packages\\",
-      "outputPath": "D:\\ReactProjects\\dating-app\\MyMvcApi2\\obj\\",
+      "outputPath": "D:\\ReactProjects\\lonely-fish-forum\\MyMvcApi2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

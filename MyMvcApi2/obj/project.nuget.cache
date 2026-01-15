@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TjMRt258vxA=",
+  "dgSpecHash": "F/QTxLqR1/M=",
   "success": true,
-  "projectFilePath": "D:\\ReactProjects\\dating-app\\MyMvcApi2\\MyMvcApi2.csproj",
+  "projectFilePath": "D:\\ReactProjects\\lonely-fish-forum\\MyMvcApi2\\MyMvcApi2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ser Nikos\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Ser Nikos\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
